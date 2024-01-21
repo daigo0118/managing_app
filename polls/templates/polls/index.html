@@ -1,12 +1,26 @@
-<html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-    <title>Django Render</title>
-  </head>
-  <body>
-    <h1 class="center">How to deploy Django to Render</h1>
-  </body>
-</html>
+{% extends "polls/base.html" %}
+{% block content %}
+
+    {% if user.is_authenticated %}
+        <div class="container">
+            <form method="post" action="{% url 'polls:result' %}">
+            {% csrf_token %}
+                <h1>{{  user  }} さん</h1>
+                <h2 id="time"></h2>
+                    <script>
+                    time();
+                    function time(){
+                        var now = new Date();
+                        document.getElementById("time").innerHTML = now.toLocaleString();
+                    }
+                    setInterval('time()',1000);
+                    </script>
+                <p>出勤場所：<input type="hidden" name="place">{{ form.place }}</p>
+                <p>IN/OUT：<input type="hidden" name="in_out">{{ form.in_out }}</p>
+                <p><input class="btn btn-primary" type="submit" value="Submit"></p>
+            </form>
+            <a href="../accounts/logout">ログアウト</a>
+        </div>
+    {% endif %}
+{% endblock  %}
+
