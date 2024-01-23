@@ -12,13 +12,13 @@ from django.utils import timezone
 #     return HttpResponse("出勤,退勤")
 
 class IndexView(View):
-    def get(self, request, *args, **kwargs):
+    def get(self, request):
         form = SubmitAttendanceForm
         context = {
             'form': form,
             "user": request.user,
         }
-        return render(request, "polls/index.html")
+        return render(request, "polls/index.html", context)
 index = IndexView.as_view()
 
 class ResultView(View):
