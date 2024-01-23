@@ -19,8 +19,14 @@
                 <p>IN/OUT：<input type="hidden" name="in_out">{{ form.in_out }}</p>
                 <p><input class="btn btn-primary" type="submit" value="Submit"></p>
             </form>
-            <a href="../accounts/logout">ログアウト</a>
+            <form action="/accounts/logout/" method="POST">
+                {% csrf_token %}
+                <button>ログアウト</button>
+            </form>
         </div>
+    {%else%}
+        <a href="/accounts/login">おはようございます！</a>
     {% endif %}
+
 {% endblock  %}
 

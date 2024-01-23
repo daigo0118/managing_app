@@ -8,12 +8,10 @@ class SubmitAttendance(models.Model):
         db_table = 'polls'
 
     PLACES = (
-        (1, 'Bar Foo'),
-        (2, 'Bar Baz'),
-        (3, 'Bar Qux'),
-        (4, 'Bar Quux'),
-        (5, 'Bar Corge'),
-        (6, 'Bar Grault'),
+        (1, '愛工大名電高校'),
+        (2, '中部大学'),
+        (3, '新潟大学'),
+        (4, '新潟大学院'),
     )
     IN_OUT = (
         (1, '出勤'),
@@ -22,6 +20,6 @@ class SubmitAttendance(models.Model):
 
     staff = models.ForeignKey(get_user_model(), verbose_name="スタッフ", on_delete=models.CASCADE, default=None)
     place = models.IntegerField(verbose_name='出勤場所名', choices=PLACES, default=None)
-    in_out = models.IntegerField(verbose_name='IN/OUT', choices=IN_OUT, default=None)
+    in_out = models.IntegerField(verbose_name='退勤/出勤', choices=IN_OUT, default=None)
     time = models.TimeField(verbose_name="打刻時間")
     date = models.DateField(verbose_name='打刻日')
