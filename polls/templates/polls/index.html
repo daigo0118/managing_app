@@ -16,17 +16,19 @@
                     setInterval('time()',1000);
                     </script>
                 <p>出勤場所：<input type="hidden" name="place">{{ form.place }}</p>
-                <p>IN/OUT：<input type="hidden" name="in_out">{{ form.in_out }}</p>
-                <p><input class="btn btn-primary" type="submit" value="Submit"></p>
+                <p>出勤/退勤：<input type="hidden" name="in_out">{{ form.in_out }}</p>
+                <p><input class="btn btn-primary" type="submit" value="打刻する"></p>
             </form>
             <form action="/accounts/logout/" method="POST">
                 {% csrf_token %}
                 <button>ログアウト</button>
             </form>
         </div>
-    {%else%}
-        <a href="/accounts/login">おはようございます！</a>
-    {% endif %}
+        <div class="hello">
+        {%else%}
+            <a href="/accounts/login">おはようございます！</a>
+        {% endif %}
+        </div>
 
 {% endblock  %}
 
